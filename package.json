@@ -1,0 +1,26 @@
+{
+  "name": "react-create-app-add-redux",
+  "version": "1.0.0",
+  "description": "A simple tool that adds Redux to react-create-app",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/eenewbsauce/react-create-app-add-redux.git"
+  },
+  "bin": {
+    "add-redux": "./index.js"
+  },
+  "keywords": [
+    "react-create-app",
+    "redux"
+  ],
+  "author": "eenewbsauce",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/eenewbsauce/react-create-app-add-redux/issues"
+  },
+  "homepage": "https://github.com/eenewbsauce/react-create-app-add-redux#readme"
+}
