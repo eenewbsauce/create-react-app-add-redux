@@ -15,5 +15,5 @@ const installDeps = deps.forEach(dep => {
 
 //create directories
 const createDirectories = dirs.forEach(dir => {
-  spawnHelper.process(spawn('mkdir', [`src/${dir}`]));
+  spawnHelper.process(spawn('mkdir', ['-p', `src/${dir}`]));
 });
