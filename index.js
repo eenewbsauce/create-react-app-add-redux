@@ -6,7 +6,7 @@ const deps = ['redux', 'react-redux'];
 const dirs = ['actions'];
 
 //eject app
-spawnHelper.process(spawn('npm', ['run', 'eject']));
+const eject = spawnHelper.process(spawn('npm', ['run', 'eject']));
 
 //install dependecies
 const installDeps = deps.forEach(dep => {
