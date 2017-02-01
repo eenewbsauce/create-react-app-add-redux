@@ -1,6 +1,7 @@
 #!/usr/local/bin/node
 const path  = require('path');
 const fs    = require('fs');
+const R     = require('ramda');
 
 const SpawnHelper = require('./helpers').spawnHelper;
 const deps = ['redux', 'react-redux'];
@@ -35,5 +36,19 @@ new SpawnHelper()
 
 //add imports to App.js
 let appJs = fs.readFileSync('./src/App.js', { encoding: 'utf8' });
-appJs += 'import PeopleContainer from './components/PeopleContainer'';
-fs.writeFileSync('./src/App.js', appJs);
+let peopleContainerImport = "import PeopleContainer from './components/PeopleContainer'";
+let peopleContainer = '<PeopleContainer />';
+let parts = appJs.split('\n');
+// parts.forEach((x,i) => (console.log(`${i}: ${x}`)))
+
+let partsAppended = [
+  ...parts.slice(0,3),
+  peopleContainerImport,
+  ...parts.splice(3,12),
+  peopleContainer,
+  ...parts.splice(4)
+];
+
+console.dir(partsAppended)
+
+fs.writeFileSync('./src/App.js', partsAppended.join('\n'));

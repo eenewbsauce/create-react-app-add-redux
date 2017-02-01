@@ -22,5 +22,8 @@
   "bugs": {
     "url": "https://github.com/eenewbsauce/react-create-app-add-redux/issues"
   },
-  "homepage": "https://github.com/eenewbsauce/react-create-app-add-redux#readme"
+  "homepage": "https://github.com/eenewbsauce/react-create-app-add-redux#readme",
+  "dependencies": {
+    "ramda": "^0.23.0"
+  }
 }
