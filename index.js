@@ -1,19 +1,25 @@
 #!/usr/local/bin/node
 
-const spawn = require('child_process').spawn;
-const spawnHelper = require('./helpers').spawn;
+const SpawnHelper = require('./helpers').spawnHelper;
+
 const deps = ['redux', 'react-redux'];
 const dirs = ['actions'];
 
 //eject app
-const eject = spawnHelper.process(spawn('npm', ['run', 'eject']));
+const eject = new SpawnHelper();
+eject.spawn('npm', ['run', 'eject'])
+  .listen({
+    stdOutFn: eject.confirm
+  });
 
 //install dependecies
-const installDeps = deps.forEach(dep => {
-  spawnHelper.process(spawn('npm', ['i', '--save', dep]));
+deps.forEach(dep => {
+  new SpawnHelper().spawn('npm', ['i', '--save', dep])
+    .listen();
 });
 
 //create directories
-const createDirectories = dirs.forEach(dir => {
-  spawnHelper.process(spawn('mkdir', ['-p', `src/${dir}`]));
+dirs.forEach(dir => {
+  new SpawnHelper().spawn('mkdir', ['-p', `src/${dir}`])
+    .listen();
 });

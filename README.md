@@ -6,7 +6,7 @@ npm i -g create-react-app
 npm i -g create-react-app-add-redux
 ```
 ## Usage
-First create a new using create-react-app
+First create a new app using create-react-app
 
 ```
 create-react-app my-app

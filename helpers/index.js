@@ -1,3 +1,3 @@
 module.exports = {
-  spawn: require('./spawn')
+  spawnHelper: require('./spawnHelper')
 };
