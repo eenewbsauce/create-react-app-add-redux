@@ -15,7 +15,7 @@ function closeFnDefault(code) {
 class SpawnHelper {
   spawn(executable, argsArr) {
     this.spawnObj = spawnLib(executable, argsArr);
-    
+
     return this;
   }
 
