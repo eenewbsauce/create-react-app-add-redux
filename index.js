@@ -1,9 +1,10 @@
 #!/usr/local/bin/node
 const path  = require('path');
 const fs    = require('fs');
-const R     = require('ramda');
 
 const SpawnHelper = require('./helpers').spawnHelper;
+const FormatHelper = require('./helpers').formatHelper;
+
 const deps = ['redux', 'react-redux'];
 const dirs = ['actions'];
 
@@ -39,16 +40,13 @@ let appJs = fs.readFileSync('./src/App.js', { encoding: 'utf8' });
 let peopleContainerImport = "import PeopleContainer from './components/PeopleContainer'";
 let peopleContainer = '<PeopleContainer />';
 let parts = appJs.split('\n');
-// parts.forEach((x,i) => (console.log(`${i}: ${x}`)))
 
 let partsAppended = [
   ...parts.slice(0,3),
   peopleContainerImport,
-  ...parts.splice(3,12),
-  peopleContainer,
-  ...parts.splice(4)
+  ...parts.slice(3,15),
+  FormatHelper.addTabs(parts[14]) + peopleContainer,
+  ...parts.slice(15)
 ];
-
-console.dir(partsAppended)
 
 fs.writeFileSync('./src/App.js', partsAppended.join('\n'));
