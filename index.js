@@ -2,6 +2,13 @@
 const path  = require('path');
 const fs    = require('fs');
 
+const packageJson = require(path.join(__dirname, './package.json'));
+
+if (!packageJson.scripts.hasOwnProperty('eject')) {
+  console.error('add-redux has already been run. if you\'d like to run it again, "git reset --hard", "git clean -fd", and "npm i"')
+  process.exit();
+}
+
 const SpawnHelper = require('./helpers').spawnHelper;
 const FormatHelper = require('./helpers').formatHelper;
 
