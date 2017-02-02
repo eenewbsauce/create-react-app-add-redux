@@ -6,7 +6,6 @@ const SpawnHelper = require('./helpers').spawnHelper;
 const FormatHelper = require('./helpers').formatHelper;
 
 const deps = ['redux', 'react-redux'];
-const dirs = ['actions'];
 
 //eject app
 const eject = new SpawnHelper();
@@ -23,13 +22,6 @@ deps.forEach(dep => {
     .listen();
 });
 
-//create directories
-dirs.forEach(dir => {
-  new SpawnHelper()
-    .spawn('mkdir', ['-p', `src/${dir}`])
-    .listen();
-});
-
 //move templates
 new SpawnHelper()
   .spawn('cp', ['-r', path.join(__dirname, 'templates/'), 'src'])
@@ -39,14 +31,35 @@ new SpawnHelper()
 let appJs = fs.readFileSync('./src/App.js', { encoding: 'utf8' });
 let peopleContainerImport = "import PeopleContainer from './components/PeopleContainer'";
 let peopleContainer = '<PeopleContainer />';
-let parts = appJs.split('\n');
+let appJsParts = appJs.split('\n');
 
-let partsAppended = [
-  ...parts.slice(0,3),
+let appJsPartsAppended = [
+  ...appJsParts.slice(0,3),
   peopleContainerImport,
-  ...parts.slice(3,15),
-  FormatHelper.addTabs(parts[14]) + peopleContainer,
-  ...parts.slice(15)
+  ...appJsParts.slice(3,15),
+  FormatHelper.addTabs(appJsParts[14]) + peopleContainer,
+  ...appJsParts.slice(15)
 ];
 
-fs.writeFileSync('./src/App.js', partsAppended.join('\n'));
+fs.writeFileSync('./src/App.js', appJsPartsAppended.join('\n'));
+
+//add imports to index.js
+let indexJs = fs.readFileSync('./src/index.js', { encoding: 'utf8' });
+let providerImport = `import {Provider} from 'react-redux';
+import configureStore from './store/configure-store';
+
+const store = configureStore();`;
+let providerElement = `<Provider store={store}>
+  <App />
+</Provider>,`;
+let indexJsParts = indexJs.split('\n');
+
+let indexJsPartsAppended = [
+  ...indexJsParts.slice(0,4),
+  providerImport,
+  ...indexJsParts.slice(4,6),
+  providerElement,
+  ...indexJsParts.slice(7,9)
+];
+
+fs.writeFileSync('./src/index.js', indexJsPartsAppended.join('\n'));
