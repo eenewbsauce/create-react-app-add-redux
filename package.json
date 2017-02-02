@@ -1,6 +1,6 @@
 {
   "name": "create-react-app-add-redux",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "A simple tool that adds Redux to an app created with react-create-app",
   "main": "index.js",
   "scripts": {
