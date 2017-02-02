@@ -12,6 +12,7 @@ First create a new app using create-react-app
 create-react-app my-app
 cd my-app
 add-redux
+npm install
 ```
 
 Now the dependencies have been ejected
