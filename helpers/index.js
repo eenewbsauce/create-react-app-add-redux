@@ -1,4 +1,4 @@
 module.exports = {
-  spawnHelper: require('./spawnHelper'),
-  formatHelper: require('./formatHelper')
+  spawnHelper: require('./spawnhelper'),
+  formatHelper: require('./formathelper')
 };
