@@ -12,7 +12,7 @@ if (!packageJson.scripts.hasOwnProperty('eject')) {
 const SpawnHelper = require('./helpers').spawnHelper;
 const FormatHelper = require('./helpers').formatHelper;
 
-const deps = ['redux', 'react-redux'];
+const deps = ['redux', 'react-redux', 'prop-types'];
 
 //eject app
 const eject = new SpawnHelper();
